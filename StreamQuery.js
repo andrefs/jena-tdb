@@ -16,7 +16,10 @@ class StreamQuery {
     const { path, cleanup } = await tempFile({ content: query })
     const stream = await this.endpoint.exec('tdbquery', `--results=${resultFormat}`, `--query=${path}`)
 
-    finished(stream, async () => cleanup())
+    finished(stream, async (err) => {
+      cleanup();
+      if(err){ throw err; }
+    });
 
     return stream
   }
