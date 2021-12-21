@@ -14,7 +14,7 @@ class StreamQuery {
 
   async query (query, resultFormat) {
     const { path, cleanup } = await tempFile({ content: query })
-    const stream = await this.endpoint.exec('tdbquery', `--results=${resultFormat}`, `--query=${path}`)
+    const stream = await this.endpoint.exec('tdb2.tdbquery', `--results=${resultFormat}`, `--query=${path}`)
 
     finished(stream, async (err) => {
       cleanup();
@@ -42,7 +42,7 @@ class StreamQuery {
   async update (query) {
     const { path, cleanup } = await tempFile({ content: query })
 
-    await getStream(await this.endpoint.exec('tdbupdate', `--update=${path}`))
+    await getStream(await this.endpoint.exec('tdb2.tdbupdate', `--update=${path}`))
 
     await cleanup()
   }

@@ -22,7 +22,7 @@ class StreamStore {
 
   async dump () {
     const parser = new N3Parser({ factory: this.factory })
-    const stream = await this.endpoint.exec('tdbdump', '--stream=nquads')
+    const stream = await this.endpoint.exec('tdb2.tdbdump', '--stream=nquads')
 
     return parser.import(stream)
   }
