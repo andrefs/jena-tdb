@@ -63,7 +63,7 @@ class Endpoint {
   }
 
   async importFiles (files) {
-    const stream = await this.exec('tdbloader2', files)
+    const stream = await this.exec('tdb2.tdbloader', files)
 
     await getStream(stream)
   }
